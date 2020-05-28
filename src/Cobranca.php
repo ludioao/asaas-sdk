@@ -7,7 +7,7 @@ use CodePhix\Asaas\Connection;
 class Cobranca {
     public $http;
     protected $cobranca;
-    
+
     public function __construct(Connection $connection)
     {
         $this->http = $connection;
@@ -81,16 +81,15 @@ class Cobranca {
 
     // Estorna cobrança
     public function estorno($id){
-
+        return $this->http->post(sprintf("/payments/%s/refund", $id), []);
     }
 
     // Confirmação em dinheiro
     public function confirmacao($id, $dados){
-        $data = array(
-            "paymentDate" => "2019-09-03",
-            "value" => 100.00,
+        return $this->http->post(
+            sprintf("/payments/%s/receiveInCash", $id),
+            $dados
         );
-        return $this->http->post('/customers', $data);
     }
 
     // Deleta uma cobrança
@@ -107,7 +106,7 @@ class Cobranca {
     {
         // Preenche as informações da cobranca
         $cobranca = $this->setCobranca($dados);
-        
+
         // Faz o post e retorna array de resposta
         return $this->http->post('/payments', ['form_params' => $cobranca]);
     }
