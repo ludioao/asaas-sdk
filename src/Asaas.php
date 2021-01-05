@@ -8,6 +8,7 @@ use CodePhix\Asaas\Cobranca;
 use CodePhix\Asaas\Notificacao;
 use CodePhix\Asaas\Transferencia;
 use CodePhix\Asaas\Webhook;
+use CodePhix\Asaas\Extrato;
 
 class Asaas {
     
@@ -18,6 +19,7 @@ class Asaas {
     public $notificacao;
     public $transferencia;
     public $webhook;
+    public $extrato;
     
     public function __construct($token, $status = false) {
         $connection = new Connection($token, ((!empty($status)) ? $status : 'producao'));
@@ -28,6 +30,7 @@ class Asaas {
         $this->cobranca    = new Cobranca($connection);
         $this->notificacao = new Notificacao($connection);
         $this->transferencia = new Transferencia($connection);
+        $this->extrato = new Extrato($connection);
         $this->webhook     = new Webhook($connection);
     }
 }
