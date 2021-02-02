@@ -26,4 +26,9 @@ class Extrato {
         );
     }
 
+    public function getMyAccount()
+    {
+        return $this->http->get('/myAccount');
+    }
+
 }
