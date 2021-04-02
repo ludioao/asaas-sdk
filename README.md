@@ -264,6 +264,26 @@ $notificacao = $asaas->notificacao()->update(123, array $dadosNotificacao);
 $asaas->notificacao()->delete(123);
 ```
 
+Contas
+------------
+
+```php
+$dadosConta = [
+    'accountName' => 'asaas',
+    'thirdPartyAccount' => true,
+    'bank' => "<Código FEBRABAN do Banco>",
+    'agency' => '1111114106',
+    'account' => '213123',
+    'accountDigit' => '11111',
+    'bankAccountType' => 'CONTA_POUPANCA',
+    'name' => 'NOME',
+    'cpfCnpj' => '14226363728',
+    'responsiblePhone' => '4799998899', /*(opcional)*/
+    'responsibleEmail' => 'email@asaas.com.br' /*(opcional)*/
+];
+// Atualiza ou cria uma conta bancária princial
+$account = $asaas->conta()->sendAccountData(array $dadosConta);
+```
 Documentação Oficial
 --------------------
 
