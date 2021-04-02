@@ -20,7 +20,8 @@ class Asaas {
     public $transferencia;
     public $webhook;
     public $extrato;
-    
+    public $conta;
+
     public function __construct($token, $status = false) {
         $connection = new Connection($token, ((!empty($status)) ? $status : 'producao'));
 
@@ -32,5 +33,6 @@ class Asaas {
         $this->transferencia = new Transferencia($connection);
         $this->extrato = new Extrato($connection);
         $this->webhook     = new Webhook($connection);
+        $this->conta    = new Conta($connection);
     }
 }
